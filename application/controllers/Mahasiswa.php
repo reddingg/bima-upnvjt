@@ -112,6 +112,7 @@ class Mahasiswa extends CI_Controller
 		$this->load->model('m_laboratorium');
 		$this->load->model('m_topik_riwayat');
 		$this->load->model('m_alur');
+		$this->load->model('m_status_lektor');
 
 		$data['topik'] 	= $this->m_topik->getByIdMhs($idMhs)->row_array();
 
@@ -141,6 +142,16 @@ class Mahasiswa extends CI_Controller
 				$permasalahan 	= str_replace("'", "", htmlspecialchars($this->input->post('permasalahan'), ENT_QUOTES));
 				$metodologi 	= str_replace("'", "", htmlspecialchars($this->input->post('metodologi'), ENT_QUOTES));
 				$metode  		= str_replace("'", "", htmlspecialchars($this->input->post('metode'), ENT_QUOTES));
+
+				// ambil status lektor dari masing-masing dosen
+				$status_dosen1 = $this->m_user->getById($dosen1, 'tbl_user_dosen')->row_array()['id_status_lektor'];
+				$status_dosen2 = $this->m_user->getById($dosen2, 'tbl_user_dosen')->row_array()['id_status_lektor'];
+
+				// melakukan pengecekan apakah dosen boleh berpasangan
+				if (!$this->cekPasanganLektor($status_dosen1, $status_dosen2)) {
+					$this->setPesan('Pasangan dosen tidak valid berdasarkan status lektor', 'menentukan dosen 1 & 2<br>', 'err');
+					redirect('mahasiswa/topik');
+				}
 
 				// cek kuota dosen full / tidak
 				$kuota_total[0]	= $this->m_user->getJumlahKuotaDosenById($dosen1, 'kuota_pembimbing_1')->row_array();
@@ -468,5 +479,35 @@ class Mahasiswa extends CI_Controller
 		}
 		$data['atas'] = $no - 2;
 		return $data;
+	}
+
+	private function cekPasanganLektor($status_dosen1, $status_dosen2) {
+		// jika status dosen adalah tenaga pelajar, maka tidak bisa menjadi dosen 1
+		if ($status_dosen1 == 4) {
+			return false;
+		}
+
+		// jika dosen1 adalah lektor kepala, maka boleh dengan siapa saja
+		if ($status_dosen1 == 1) {
+			return true;
+		}
+
+		// jika dosen1 adalah lektor, maka tidak boleh dengan lektor kepala, tetapi boleh dengan siapa saja selain lektor kepala
+		if ($status_dosen1 == 2) {
+			if ($status_dosen2 == 1) {
+				return false;
+			}
+			return true;
+		}
+
+		// jika dosen1 adalah asisten ahli, maka tidak boleh dengan lektor & lektor kepala, tetapi boleh dengan siapa saja selain itu
+		if ($status_dosen1 == 3) {
+			if ($status_dosen2 == 3 || $status_dosen2 == 4) {
+				return true;
+			}
+			return false;
+		}
+
+		return false; // fallback tidak valid
 	}
 }

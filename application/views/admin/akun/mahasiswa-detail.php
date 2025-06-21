@@ -144,19 +144,43 @@ function tgl_indo($tanggal){
                   <div class="form-group" style="margin-top: 0rem;">
                     <label style="color: #AAAAAA; top: 0rem;">Status</label><br>
                     <?php
-                    	if ($acc[0]['status'] == 1) {
-                        $accept = 'Sudah disetujui';
-                    	}
-                      elseif ($acc[0]['status'] == 2) {
-                        $accept = 'Tidak disetujui';
-                      }
-                    	else {
-                        $accept = 'Belum disetujui';
-                    	}
+                    $accept1 = 'Belum disetujui';
+                    if ($acc[0]['status'] == 1) {
+                      $accept1 = 'Sudah disetujui';
+                    }
+                    elseif ($acc[0]['status'] == 2) {
+                      $accept1 = 'Tidak disetujui';
+                    }
+                    	// else {
+                      //   $accept1 = 'Belum disetujui';
+                    	// }
                     ?>
-                    <input type="text" value="<?php echo $accept; ?>" name="npm" class="form-control" style="color: <?php echo $color; ?>" disabled="disabled">
-                    <a href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik['id_dosen_1'].'/1/0'; ?>" class="btn btn-success btn-sm" onclick="return confirm('Setujui topik ini ?')">Setuju</a>
-                    <a href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik['id_dosen_1'].'/2/0'; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Tolak topik ini ?')">Tolak</a>
+                    <input type="text" value="<?php echo $accept1; ?>" name="npm" class="form-control" style="color: <?php echo $color; ?>" disabled="disabled">
+                    <div class="dropdown">
+                      <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                        Aksi <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a 
+                            class="text-success"
+                            href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik['id_dosen_1'].'/1/0'; ?>" 
+                            onclick="return confirm('Setujui topik ini ?')"
+                          >
+                            <i class="fa fa-check text-success"></i>&nbsp; SETUJU
+                          </a>
+                        </li>
+                        <li>
+                          <a 
+                            class="text-danger"
+                            href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik['id_dosen_1'].'/2/0'; ?>" 
+                            onclick="return confirm('Tolak topik ini ?')"
+                          >
+                            <i class="fa fa-times text-danger"></i>&nbsp; TOLAK
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -182,19 +206,41 @@ function tgl_indo($tanggal){
                   <div class="form-group" style="margin-top: 0rem;">
                     <label style="color: #AAAAAA; top: 0rem;">Status</label><br>
                     <?php
+                    $accept2 = 'Belum disetujui';
                       if ($acc[1]['status'] == 1) {
-                        $accept = 'Sudah disetujui';
+                        $accept2 = 'Sudah disetujui';
                       }
                       elseif ($acc[1]['status'] == 2) {
-                        $accept = 'Tidak disetujui';
+                        $accept2 = 'Tidak disetujui';
                       }
-                      else {
-                        $accept = 'Belum disetujui';
-                      }
+                      // else {
+                      //   $accept2 = 'Belum disetujui';
+                      // }
                     ?>
-                    <input type="text" value="<?php echo $accept; ?>" name="npm" class="form-control" style="color: <?php echo $color; ?>" disabled="disabled">
-                    <a href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik2['id_dosen_2'].'/1/1'; ?>" class="btn btn-success btn-sm" onclick="return confirm('Setujui topik ini ?')">Setuju</a>
-                    <a href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik2['id_dosen_2'].'/2/1'; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Tolak topik ini ?')">Tolak</a>
+                    <input type="text" value="<?php echo $accept2; ?>" name="npm" class="form-control" style="color: <?php echo $color; ?>" disabled="disabled">
+                    <div class="dropdown">
+                      <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
+                        Aksi <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li>
+                          <a 
+                            class="text-success" 
+                            href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik2['id_dosen_2'].'/1/1'; ?>" 
+                            onclick="return confirm('Setujui topik ini ?')">
+                            <i class="fa fa-check text-success"></i>&nbsp; SETUJU
+                          </a>
+                        </li>
+                        <li>
+                          <a 
+                            class="text-danger" 
+                            href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik2['id_dosen_2'].'/2/1'; ?>" 
+                            onclick="return confirm('Tolak topik ini ?')">
+                            <i class="fa fa-times text-danger"></i>&nbsp; TOLAK
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
                 </div>
               </div>

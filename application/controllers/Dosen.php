@@ -55,15 +55,20 @@ class Dosen extends CI_Controller
 	{
 		$this->load->model('m_user');
 		$this->load->model('m_laboratorium');
+		$this->load->model('m_status_lektor');
+		$this->load->model('m_topik');
+
 		$id = $this->session->userdata('id');
+		$batas = $this->cekAlur();
 
 		if (isset($_POST['simpan-ubah'])) {
 			$no 	= $this->input->post('no');
 			$nama	= str_replace("'", "", htmlspecialchars($this->input->post('nama'), ENT_QUOTES));
 			$lab	= $this->input->post('lab');
 			$bidang	= $this->input->post('bidang');
+			$status_lektor = $this->input->post('status_lektor');
 
-			$status = $this->m_user->updateDosen($id, $no, $nama, $lab, $bidang); //proses update
+			$status = $this->m_user->updateDosen($id, $no, $nama, $lab, $bidang, $status_lektor); //proses update
 			$this->setPesan('profil', 'merubah', $status);
 
 			redirect('dosen/profil');
@@ -72,6 +77,47 @@ class Dosen extends CI_Controller
 		$data['lab'] 	= $this->m_laboratorium->getAll('tbl_laboratorium')->result_array();
 		$data['bidang'] = $this->m_laboratorium->getAll('tbl_bidang_keahlian')->result_array();
 		$data['profil'] = $this->m_user->getById($id, 'tbl_user_dosen')->row_array();
+		$data['status_lektor'] = $this->m_status_lektor->getAll('tbl_status_lektor')->result_array();
+		
+		$data['aktif'] = $this->m_topik->getAktifByIdDosen($id, $batas['bawah'], $batas['atas'])->result_array();
+		
+		$kuotaAktif1 = 0;
+		$kuotaAktif2 = 0;
+		
+		foreach ($data['aktif'] as $a) {
+			if ($a['id_dosen_1'] == $id) {
+				$kuotaAktif1++;
+			}
+			if ($a['id_dosen_2'] == $id) {
+				$kuotaAktif2++;
+			}
+		}
+		
+		$data['kuota_aktif_1'] = $kuotaAktif1;
+		$data['kuota_aktif_2'] = $kuotaAktif2;
+		
+		$data['proses'] = $this->m_topik->getAktifByIdDosen($id, 0, ($batas['bawah'] - 1))->result_array();
+
+		$kuotaProses1 = 0;
+		$kuotaProses2 = 0;
+
+		foreach ($data['proses'] as $p) {
+			if ($p['id_dosen_1'] == $id) {
+				$kuotaProses1++;
+			}
+			if ($p['id_dosen_2'] == $id) {
+				$kuotaProses2++;
+			}
+		}
+
+		$data['kuota_proses_1'] = $kuotaProses1;
+		$data['kuota_proses_2'] = $kuotaProses2;
+
+		
+		$data['sisa_kuota_1'] = max(0, $data['profil']['kuota_pembimbing_1'] - $kuotaAktif1);
+		$data['sisa_kuota_2'] = max(0, $data['profil']['kuota_pembimbing_2'] - $kuotaAktif2);
+
+
 		$this->template->load('v_master', 'dosen/profil', $data);
 	}
 

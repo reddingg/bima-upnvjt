@@ -14,7 +14,7 @@
       <button type="submit" class="btn btn-success mx-auto d-block">Kirim</button>
       <div class="row mx-auto d-block" align="center" style="margin-top: 1rem;">
       	<a class="text-secondary" href="<?php echo base_url(); ?>bima/masuk">Masuk</a>&nbsp;&nbsp;
-      	<a class="text-secondary" href="<?php echo base_url(); ?>bima/daftar">Daftar</a>
+      	<!-- <a class="text-secondary" href="<?php echo base_url(); ?>bima/daftar">Daftar</a> -->
       </div>
     </form>
   </div>

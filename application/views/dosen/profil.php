@@ -55,16 +55,45 @@
         </div>
       </div>
       <div class="row">
+        <div class="col-md-12">
+          <div class="form-group bmd-form-group is-filled" style="margin-top: 1rem;">
+            <label style="color: #AAAAAA; top: -1rem;" class="bmd-label-static">Status Lektor</label>
+            <select class="form-control" name="status_lektor" required="required" style="margin-top: -0.3rem; color: <?php echo $color; ?>">
+              <?php
+                foreach ($status_lektor as $value) {
+                  if ($value['id'] == $profil['id_status_lektor']) {
+                    echo '<option selected value="'.$value['id'].'">'.$value['nama'].'</option>';
+                  }
+                  else{
+                    echo '<option value="'.$value['id'].'">'.$value['nama'].'</option>';
+                  }
+                }
+              ?>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
         <div class="col-md-6">
           <div class="form-group bmd-form-group is-filled" style="margin-top: 1rem;">
             <label style="color: #AAAAAA; top: -1rem;" class="bmd-label-static">Kuota pembimbing 1</label>
             <input type="text" value="<?php echo $profil['kuota_pembimbing_1']; ?>" class="form-control" style="color: <?php echo $color; ?>" disabled="disabled">
+            <small style="color: #000;">
+              Aktif: <?php echo $kuota_aktif_1 ?? 0; ?> |
+              Proses: <?php echo $kuota_proses_1 ?? 0; ?> |
+              Sisa: <?php echo $sisa_kuota_1 ?? 0; ?>
+            </small>
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group bmd-form-group is-filled" style="margin-top: 1rem;">
             <label style="color: #AAAAAA; top: -1rem;" class="bmd-label-static">Kuota pembimbing 2</label>
             <input type="text" value="<?php echo $profil['kuota_pembimbing_2']; ?>" class="form-control" style="color: <?php echo $color; ?>" disabled="disabled">
+            <small style="color: #000;">
+              Aktif: <?php echo $kuota_aktif_2 ?? 0; ?> |
+              Proses: <?php echo $kuota_proses_2 ?? 0; ?> |
+              Sisa: <?php echo $sisa_kuota_2 ?? 0; ?>
+            </small>
           </div>
         </div>
       </div>

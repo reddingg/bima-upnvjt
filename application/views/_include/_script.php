@@ -36,6 +36,7 @@ function word() {
 $(document).ready(function() {
     $('#table1').DataTable( {
         dom: 'Bfrtip',
+        pageLength: 20,
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]
@@ -44,6 +45,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('#table2').DataTable( {
         dom: 'Bfrtip',
+        pageLength: 20,
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]
@@ -52,6 +54,7 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('#table3').DataTable( {
         dom: 'Bfrtip',
+        pageLength: 20,
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
         ]

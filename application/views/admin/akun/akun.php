@@ -89,6 +89,16 @@
               ?>
             </select>
           </div>
+          <div class="form-group bmd-form-group is-filled" style="margin-top: 1rem;">
+            <label style="color: #AAAAAA; top: -1rem;" class="bmd-label-static">Status Lektor</label>
+            <select class="form-control" name="status_lektor" required="required" style="margin-top: -0.3rem; color: <?php echo $color; ?>">
+              <?php
+                foreach ($status_lektor as $value) {
+                  echo '<option value="'.$value['id'].'">'.$value['nama'].'</option>';
+                }
+              ?>
+            </select>
+          </div>
           <?php } ?>
         </div>
         <div class="modal-footer">
@@ -142,6 +152,21 @@ if (@$ubah['email'] != '' ) {
                   }
                   else{
                     echo '<option value="'.$value['id'].'">'.$value['nama'].'</option>';
+                  }
+                }
+              ?>
+            </select>
+          </div>
+          <div class="form-group bmd-form-group is-filled" style="margin-top: 1rem;">
+            <label style="color: #AAAAAA; top: -1rem;" class="bmd-label-static">Status Lektor</label>
+            <select class="form-control" name="status_lektor" required="required" style="margin-top: -0.3rem; color: <?php echo $color; ?>">
+              <?php
+                foreach ($status_lektor as $value) {
+                  if ($value['id'] == $ubah['id_status_lektor']) {
+                    echo '<option selected value="'.$value['id'].'">'.$value['nama'].'</option>';
+                  } else {
+                      echo '<option value="'.$value['id'].'">'.$value['nama'].'</option>';
+
                   }
                 }
               ?>

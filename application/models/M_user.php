@@ -11,11 +11,11 @@ class M_user extends CI_Model
                 return $query;
         }
 
-        function insert($email, $password, $nama, $table, $lab)
+        function insert($email, $password, $nama, $table, $lab, $status_lektor = null)
         {
                 $sql    = "INSERT INTO $table (email, password, nama) VALUES('$email', '$password', '$nama')";
                 if ($lab != '') {
-                        $sql    = "INSERT INTO $table (email,password,nama,id_laboratorium) VALUES('$email','$password','$nama','$lab')";
+                        $sql    = "INSERT INTO $table (email,password,nama,id_laboratorium,id_status_lektor) VALUES('$email','$password','$nama','$lab', '$status_lektor')";
                 }
                 $query  = $this->db->query($sql);
                 if ($query) {
@@ -63,11 +63,11 @@ class M_user extends CI_Model
                 return $query;
         }
 
-        function update($id, $password, $nama, $table, $lab)
+        function update($id, $password, $nama, $table, $lab, $status_lektor = null)
         {
                 $query = $this->db->query("UPDATE $table SET password='$password', nama='$nama' WHERE id = '$id'");
                 if ($lab != '') {
-                        $query = $this->db->query("UPDATE $table SET password='$password', nama='$nama', id_laboratorium = '$lab' WHERE id = '$id'");
+                        $query = $this->db->query("UPDATE $table SET password='$password', nama='$nama', id_laboratorium = '$lab', id_status_lektor='$status_lektor' WHERE id = '$id'");
                 }
                 if ($query) {
                         $status = 'oke';
@@ -171,9 +171,9 @@ class M_user extends CI_Model
                 return $status;
         }
 
-        function updateDosen($id, $no, $nama, $lab, $bidang)
+        function updateDosen($id, $no, $nama, $lab, $bidang, $status_lektor)
         {
-                $sql    = "UPDATE tbl_user_dosen SET no_induk='$no', nama='$nama', id_laboratorium='$lab' WHERE id = '$id'";
+                $sql    = "UPDATE tbl_user_dosen SET no_induk='$no', nama='$nama', id_laboratorium='$lab', id_status_lektor='$status_lektor' WHERE id = '$id'";
                 $query  = $this->db->query($sql);
                 if ($query) {
                         $status = 'oke';

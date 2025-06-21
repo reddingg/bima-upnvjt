@@ -466,6 +466,7 @@ class Admin extends CI_Controller
 			$konfirmasi = $this->input->post('konfirmasi');
 			$nama 		= str_replace("'", "", htmlspecialchars($this->input->post('nama'), ENT_QUOTES));
 			$lab 		= $this->input->post('lab');
+			$status_lektor = $this->input->post('status_lektor');
 
 			// validasi
 			$this->form_validation->set_rules('email', 'Email', 'required|is_unique[tbl_user_mahasiswa.email]|is_unique[tbl_user_dosen.email]|is_unique[tbl_user_admin.email]|is_unique[tbl_user_pimpinan.email]|trim|xss_clean|min_length[11]|max_length[50]|valid_email');
@@ -486,7 +487,7 @@ class Admin extends CI_Controller
 			else {
 				$password 	= password_hash($password, PASSWORD_DEFAULT);
 				if ($lab != '') { //jika dosen
-					$status = $this->m_user->insert($email, $password, $nama, $table, $lab);
+					$status = $this->m_user->insert($email, $password, $nama, $table, $lab, $status_lektor);
 				} else {
 					$status = $this->m_user->insert($email, $password, $nama, $table, '');
 				}
@@ -499,6 +500,7 @@ class Admin extends CI_Controller
 			$konfirmasi = $this->input->post('konfirmasi');
 			$nama 		= str_replace("'", "", htmlspecialchars($this->input->post('nama'), ENT_QUOTES));
 			$lab 		= $this->input->post('lab');
+			$status_lektor = $this->input->post('status_lektor');
 
 			// validasi
 			if ($password != $konfirmasi) {
@@ -512,7 +514,7 @@ class Admin extends CI_Controller
 				$password 	= password_hash($password, PASSWORD_DEFAULT);
 
 				if ($lab != '') {
-					$status = $this->m_user->update($id, $password, $nama, $table, $lab);
+					$status = $this->m_user->update($id, $password, $nama, $table, $lab, $status_lektor);
 				} else {
 					$status = $this->m_user->update($id, $password, $nama, $table, '');
 				}
@@ -772,8 +774,12 @@ class Admin extends CI_Controller
 			$this->template->load('v_master', 'admin/akun/mahasiswa-pemberitahuan', $data);
 		} elseif ($uri == 'dosen') {
 			$this->load->model('m_laboratorium');
+			$this->load->model('m_status_lektor');
+			
 			$data['lab'] = $this->m_laboratorium->getAll('tbl_laboratorium')->result_array();
 			$data['data']	= $this->m_user->getAll($table)->result_array();
+			$data['status_lektor'] = $this->m_status_lektor->getAll('tbl_status_lektor')->result_array();
+			
 			$this->template->load('v_master', 'admin/akun/akun', $data);
 		} elseif (($uri == 'admin') || ($uri == 'pimpinan')) {
 			$data['data']	= $this->m_user->getAll($table)->result_array();

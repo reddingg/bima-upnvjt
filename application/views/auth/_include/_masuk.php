@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header card-header-success">
-    <h4 class="text-center card-title">Masuk</h4>
+    <h4 class="text-center card-title">Selamat Datang!</h4>
   </div>
   <div class="card-body">
     <form method="post" action="<?php echo base_url(); ?>auth/masuk">
@@ -20,8 +20,8 @@
       </div>
       <button type="submit" class="btn btn-success mx-auto d-block">Masuk</button>
       <div class="row mx-auto d-block" align="center" style="margin-top: 1rem;">
-        <!-- <a class="text-secondary" href="<?php echo base_url(); ?>bima/daftar">Daftar</a>&nbsp;&nbsp;
-        <a class="text-secondary" href="<?php echo base_url(); ?>bima/lupa">Lupa password</a> -->
+        <a class="text-secondary" href="<?php echo base_url(); ?>bima/daftar">Daftar</a>&nbsp;&nbsp;
+        <a class="text-secondary" href="<?php echo base_url(); ?>bima/lupa">Lupa password</a>
       </div>
     </form>
   </div>
