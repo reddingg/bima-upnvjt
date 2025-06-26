@@ -1225,4 +1225,36 @@ class Admin extends CI_Controller
 		$data['atas'] = $no - 2;
 		return $data;
 	}
+
+	function setDropout() {
+		$this->load->model('m_user');
+		$this->load->model('m_topik');
+
+		$uri 	= $this->uri->segment('3');
+		$id = $this->uri->segment('4');
+
+		$statusDropout = $this->m_user->setStatusDropout($id);
+		if ($statusDropout) {
+			$statusDosen = $this->m_topik->offDutyDosenByDropout($id);
+			$this->setPesan("akun $uri", 'mengubah status dropout', $statusDropout);
+	
+			redirect("admin/akun/$uri");
+		}
+		
+		$this->setPesan("akun $uri", 'mengubah status dropout', $statusDropout);
+
+		redirect("admin/akun/$uri");
+	}
+
+	function removeDropout() {
+		$this->load->model('m_user');
+
+		$uri 	= $this->uri->segment('3');
+		$id = $this->uri->segment('4');
+
+		$status = $this->m_user->removeStatusDropout($id);
+		$this->setPesan("akun $uri", 'mengubah status dropout', $status);
+
+		redirect("admin/akun/$uri");
+	}
 }

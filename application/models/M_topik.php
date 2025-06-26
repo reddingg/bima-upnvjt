@@ -128,4 +128,17 @@ class M_topik extends CI_Model {
         $query  = $this->db->query($sql);
         return $query;
     }
+
+    function offDutyDosenByDropout($idMhs) {
+        $sql = "DELETE FROM tbl_topik WHERE id_mahasiswa='$idMhs'";
+        $query = $this->db->query($sql);
+
+        if ($query) {
+            $status = 'oke';
+        } else {
+            $status = 'err';
+        }
+
+        return $status;
+    }
 }

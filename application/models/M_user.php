@@ -50,7 +50,7 @@ class M_user extends CI_Model
 
         function getWithTahap()
         {
-                $sql    = "SELECT tbl_user_mahasiswa.id,npm, nama, email, tbl_topik.tahap FROM tbl_user_mahasiswa
+                $sql    = "SELECT tbl_user_mahasiswa.id,npm, nama, email, status_dropout, tbl_topik.tahap FROM tbl_user_mahasiswa
                 LEFT JOIN tbl_topik ON tbl_user_mahasiswa.id = tbl_topik.id_mahasiswa ORDER BY npm DESC";
                 $query  = $this->db->query($sql);
                 return $query;
@@ -231,5 +231,30 @@ class M_user extends CI_Model
                 $sql    = "SELECT $kolom FROM tbl_user_dosen WHERE id = '$idDsn'";
                 $query  = $this->db->query($sql);
                 return $query;
+        }
+
+        function setStatusDropout($id) {
+                $sql = "UPDATE tbl_user_mahasiswa SET status_dropout='1' WHERE id='$id'";
+                $query = $this->db->query($sql);
+
+                if ($query) {
+                        $status = 'oke';
+                } else {
+                        $status = 'err';
+                }
+                
+                return $status;        
+        }
+
+        function removeStatusDropout($id) {
+                $sql = "UPDATE tbl_user_mahasiswa SET status_dropout='0' WHERE id='$id'";
+                $query = $this->db->query($sql);
+
+                if ($query) {
+                        $status = 'oke';
+                } else {
+                        $status = 'err';
+                }
+                return $status;        
         }
 }

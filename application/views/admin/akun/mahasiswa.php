@@ -104,6 +104,8 @@ function tahap($tahap, $alur)
 
 <?php
 if (@$ubah['email'] != '') {
+  $is_dropout = ($ubah['status_dropout'] == TRUE);
+  $status_dropout = $is_dropout ? 'DROPOUT' : 'Mahasiswa Aktif';
 ?>
   <div class="modal fade" id="exampleModalCenterUbah" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -132,6 +134,28 @@ if (@$ubah['email'] != '') {
             <div class="form-group bmd-form-group" style="margin-top: 1rem;">
               <label style="color: #AAAAAA; top: -1rem;" class="bmd-label-static">Konfirmasi password</label>
               <input type="password" name="konfirmasi" class="form-control" required="required">
+            </div>
+            <div class="form-group bmd-form-group mt-4">
+              <label class="bmd-label-static">Status Dropout</label>
+              <input type="text" class="form-control <?php echo $is_dropout ? "text-danger" : "" ?>" value="<?php echo $status_dropout; ?>" disabled>
+              <div class="mt-2">
+                <?php if (!$is_dropout): ?>
+                <!-- Tombol Set Dropout -->
+                <a href="<?php echo base_url('admin/setDropout/' . $uri . '/' . $ubah['id']); ?>"
+                  class="btn btn-danger btn-sm"
+                  onclick="return <?php echo $is_dropout ? 'false' : 'confirm(\'Set sebagai dropout?\')'; ?>">
+                  Dropout
+                </a>
+
+                <?php else:?>
+                <!-- Tombol Remove Dropout -->
+                <a href="<?php echo base_url('admin/removeDropout/' . $uri . '/' . $ubah['id']); ?>"
+                  class="btn btn-success btn-sm"
+                  onclick="return <?php echo !$is_dropout ? 'false' : 'confirm(\'Aktifkan kembali?\')'; ?>">
+                  Remove Dropout
+                </a>
+                <?php endif; ?>
+              </div>
             </div>
           </div>
           <div class="modal-footer">
