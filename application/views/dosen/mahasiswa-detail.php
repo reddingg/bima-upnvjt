@@ -157,31 +157,18 @@ if ($this->session->userdata('tema') == 'black') {
                   <input type="text" value="<?php echo $accept1; ?>" name="npm" class="form-control" style="color: <?php echo $color; ?>" disabled="disabled">
 
                   <?php if ($posisi == 0): ?>
-                    <div class="dropdown" style="margin-top: 0.5rem;">
-                      <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
-                        Aksi <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a 
-                            class="text-success"
-                            href="<?php echo base_url().'dosen/mahasiswa/detail/'.$topik['id_mahasiswa'].'/acc/1/0'; ?>" 
-                            onclick="return confirm('Setujui topik ini ?')"
-                          >
-                            <i class="fa fa-check text-success"></i>&nbsp; SETUJU
-                          </a>
-                        </li>
-                        <li>
-                          <a 
-                            class="text-danger"
-                            href="<?php echo base_url().'dosen/mahasiswa/detail/'.$topik['id_mahasiswa'].'/acc/2/0'; ?>" 
-                            onclick="return confirm('Tolak topik ini ?')"
-                          >
-                            <i class="fa fa-times text-danger"></i>&nbsp; TOLAK
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
+                    <a href="<?php echo base_url().'dosen/mahasiswa/detail/'.$topik['id_mahasiswa'].'/acc/1/0'; ?>" 
+                      class="btn btn-success btn-sm"
+                      onclick="return confirm('Setujui topik ini ?')"
+                    >
+                      Setuju
+                    </a>
+                    <a href="<?php echo base_url().'dosen/mahasiswa/detail/'.$topik['id_mahasiswa'].'/acc/2/0'; ?>"
+                      class="btn btn-danger btn-sm"
+                      onclick="return confirm('Tolak topik ini ?')"
+                    >
+                      Tolak
+                    </a>
                   <?php endif; ?>
                 </div>
               </div>
@@ -218,31 +205,18 @@ if ($this->session->userdata('tema') == 'black') {
                   <input type="text" value="<?php echo $accept; ?>" class="form-control" style="color: <?php echo $color; ?>" disabled="disabled">
 
                   <?php if ($posisi == 1): ?>
-                    <div class="dropdown" style="margin-top: 0.5rem;">
-                      <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
-                        Aksi <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a 
-                            class="text-success"
-                            href="<?php echo base_url().'dosen/mahasiswa/detail/'.$topik['id_mahasiswa'].'/acc/1/1'; ?>" 
-                            onclick="return confirm('Setujui topik ini ?')"
-                          >
-                            <i class="fa fa-check text-success"></i>&nbsp; SETUJU
-                          </a>
-                        </li>
-                        <li>
-                          <a 
-                            class="text-danger"
-                            href="<?php echo base_url().'dosen/mahasiswa/detail/'.$topik['id_mahasiswa'].'/acc/2/1'; ?>" 
-                            onclick="return confirm('Tolak topik ini ?')"
-                          >
-                            <i class="fa fa-times text-danger"></i>&nbsp; TOLAK
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
+                    <a href="<?php echo base_url().'dosen/mahasiswa/detail/'.$topik['id_mahasiswa'].'/acc/1/1'; ?>" 
+                      class="btn btn-success btn-sm"
+                      onclick="return confirm('Setujui topik ini ?')"
+                    >
+                      Setuju
+                    </a>
+                    <a href="<?php echo base_url().'dosen/mahasiswa/detail/'.$topik['id_mahasiswa'].'/acc/2/1'; ?>"
+                      class="btn btn-danger btn-sm"
+                      onclick="return confirm('Tolak topik ini ?')"
+                    >
+                      Tolak
+                    </a>
                   <?php endif; ?>
                 </div>
               </div>

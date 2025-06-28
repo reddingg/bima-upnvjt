@@ -156,31 +156,18 @@ function tgl_indo($tanggal){
                     	// }
                     ?>
                     <input type="text" value="<?php echo $accept1; ?>" name="npm" class="form-control" style="color: <?php echo $color; ?>" disabled="disabled">
-                    <div class="dropdown">
-                      <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
-                        Aksi <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a 
-                            class="text-success"
-                            href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik['id_dosen_1'].'/1/0'; ?>" 
-                            onclick="return confirm('Setujui topik ini ?')"
-                          >
-                            <i class="fa fa-check text-success"></i>&nbsp; SETUJU
-                          </a>
-                        </li>
-                        <li>
-                          <a 
-                            class="text-danger"
-                            href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik['id_dosen_1'].'/2/0'; ?>" 
-                            onclick="return confirm('Tolak topik ini ?')"
-                          >
-                            <i class="fa fa-times text-danger"></i>&nbsp; TOLAK
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
+                    <a href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik['id_dosen_1'].'/1/0'; ?>" 
+                      class="btn btn-success btn-sm"
+                      onclick="return confirm('Setujui topik ini ?')"
+                    >
+                      Setuju
+                    </a>
+                    <a href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik['id_dosen_1'].'/2/0'; ?>"
+                      class="btn btn-danger btn-sm"
+                      onclick="return confirm('Tolak topik ini ?')"
+                    >
+                      Tolak
+                    </a>
                   </div>
                 </div>
               </div>
@@ -218,29 +205,16 @@ function tgl_indo($tanggal){
                       // }
                     ?>
                     <input type="text" value="<?php echo $accept2; ?>" name="npm" class="form-control" style="color: <?php echo $color; ?>" disabled="disabled">
-                    <div class="dropdown">
-                      <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-toggle="dropdown">
-                        Aksi <span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li>
-                          <a 
-                            class="text-success" 
-                            href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik2['id_dosen_2'].'/1/1'; ?>" 
-                            onclick="return confirm('Setujui topik ini ?')">
-                            <i class="fa fa-check text-success"></i>&nbsp; SETUJU
-                          </a>
-                        </li>
-                        <li>
-                          <a 
-                            class="text-danger" 
-                            href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik2['id_dosen_2'].'/2/1'; ?>" 
-                            onclick="return confirm('Tolak topik ini ?')">
-                            <i class="fa fa-times text-danger"></i>&nbsp; TOLAK
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
+                    <a href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik2['id_dosen_2'].'/1/1'; ?>"
+                      class="btn btn-success btn-sm"
+                      onclick="return confirm('Setujui topik ini ?')">
+                      Setuju
+                    </a>
+                    <a href="<?php echo base_url().'admin/akun/detail/'.$topik['id_mahasiswa'].'/acc/'.$topik2['id_dosen_2'].'/2/1'; ?>"
+                      class="btn btn-danger btn-sm"
+                      onclick="return confirm('Tolak topik ini ?')">
+                      Tolak
+                    </a>
                   </div>
                 </div>
               </div>

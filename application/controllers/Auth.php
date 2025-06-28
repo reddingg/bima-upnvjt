@@ -73,6 +73,13 @@ class Auth extends CI_Controller {
 				
 				redirect('bima/masuk');
 			}
+			
+			if ((@$cek['status_dropout'] == TRUE) && ($role == 'mahasiswa')) {
+				$this->setPesan('<br>ANDA TELAH DI DROPOUT','masuk','err');
+
+				redirect('bima/masuk');
+			}
+
 			// set sesi login
 	        $this->session->set_userdata('id', $cek['id']);
 	        $this->session->set_userdata('role', $role);
