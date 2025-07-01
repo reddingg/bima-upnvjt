@@ -75,6 +75,10 @@
 			width: 100%;
 		}
 
+		.flash-message-container {
+			z-index: 1;
+		}
+		
 		@media (min-width: 768px) {
 			.login-form-container {
 				flex-direction: row;
@@ -100,6 +104,10 @@
 				left: 10px;
 				width: auto;
 			}
+
+			.flash-message-container {
+				z-index: 1;
+			}
 		}
 	</style>
 
@@ -110,9 +118,6 @@
 		<div class="container login-form-container">
 			<div class="login-form-card">
 				<div class="login-content-wrapper">
-					<!-- flash message > ketika terjadi kesalahan input -->
-					<?php echo $this->session->flashdata('pesan'); ?>
-					
 					<!-- logo bima  -->
 					<div class="container">
 						<a href="<?php echo base_url().'bima' ?>">
@@ -121,10 +126,16 @@
 					</div>
 					
 					<!-- dynamic auth view: masuk, daftar, lupa -->
-					<?php 
-					$uri = $this->uri->segment('2');
-					$this->load->view("auth/_include/_$uri"); 
-					?>
+					<div class="container">
+						<div class="flash-message-container mt-3">
+							<!-- flash message > ketika terjadi kesalahan input -->
+							<?php echo $this->session->flashdata('pesan'); ?>
+						</div>
+						<?php 
+							$uri = $this->uri->segment('2');
+							$this->load->view("auth/_include/_$uri"); 
+						?>
+					</div>
 				</div>
 
 				<!-- button untuk kebali ke beranda -->
