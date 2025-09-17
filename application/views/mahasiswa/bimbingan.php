@@ -94,7 +94,7 @@ function statusBimbingan($value){
             </div>
             <div class="form-group" style="margin-top: 1rem;">
               <label style="color: #AAAAAA; top: -1rem;">Materi bimbingan</label>
-              <input type="text" class="form-control" name="materi" required="required">
+              <textarea style="color: <?php echo $color; ?>" class="form-control" name="materi" rows="10" required="required"></textarea>
             </div>
         </div>
         <div class="modal-footer">

@@ -81,9 +81,9 @@ if ($CI_ENV == 'production') {
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => 'db', //localhost
 	'username' => 'root',
-	'password' => '',
+	'password' => 'rootpass',
 	'database' => 'bima_sql_dump_2024',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
