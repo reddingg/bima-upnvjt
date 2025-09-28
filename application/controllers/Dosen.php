@@ -114,8 +114,8 @@ class Dosen extends CI_Controller
 		$data['kuota_proses_2'] = $kuotaProses2;
 
 		
-		$data['sisa_kuota_1'] = max(0, $data['profil']['kuota_pembimbing_1'] - $kuotaAktif1);
-		$data['sisa_kuota_2'] = max(0, $data['profil']['kuota_pembimbing_2'] - $kuotaAktif2);
+		$data['sisa_kuota_1'] = max(0, $data['profil']['kuota_pembimbing_1'] - ($kuotaAktif1 + $kuotaProses1));
+		$data['sisa_kuota_2'] = max(0, $data['profil']['kuota_pembimbing_2'] - ($kuotaAktif2 + $kuotaProses2));
 
 
 		$this->template->load('v_master', 'dosen/profil', $data);
