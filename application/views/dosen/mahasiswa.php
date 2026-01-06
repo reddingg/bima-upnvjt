@@ -40,7 +40,13 @@ function dosen($id, $dosen){
                 $no = 1;
                 $i = 0;
                 foreach ($proses as $value) {
-                  echo '<tr>';
+                  // cek status acc
+                  $row_class = '';
+                  if (isset($value['acc']) && $value['acc'] == 1) {
+                    $row_class = 'table-success'; // hijau
+                  }
+
+                  echo '<tr class="'.$row_class.'">';
                   echo '<td>'.$no.'</td>';
                   echo '<td>'.$value['npm'].'</td>';
                   echo '<td>'.$value['nama'].'</td>';
